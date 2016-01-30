@@ -7,14 +7,16 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() {
   },
-
+  songEnd: function() {
+    this.model.ended();
+  },
   setSong: function(song) {
     this.model = song;
     this.render();
   },
 
   render: function() {
-    return this.$el.attr('src', this.model ? this.model.get('url') : '');
+    return this.$el.attr('src', this.model ? this.model.get('url') : '').bind('ended', function(){this.songEnd();}.bind(this));
   }
 
 });
