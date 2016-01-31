@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <body>
+    <head>
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+
+        <script src="data/data.js"></script>
+
+        <script src="models/Pokemon.js"></script>
+        <script src="models/AppModel.js"></script>
+        <script src="collections/PokemonList.js"></script>
+        <script src="views/PokemonEntryView.js"></script>
+        <script src="views/PokemonTableView.js"></script>
+        <script src="views/AppView.js"></script>
+    </head>
+    <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
-    <script src="bower_components/jquery/jquery.min.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/backbone/backbone.js"></script>
-
-    <script src="data/data.js"></script>
-
-    <script src="models/SongModel.js"></script>
-    <script src="collections/Songs.js"></script>
-    <script src="collections/SongQueue.js"></script>
-    <script src="models/AppModel.js"></script>
-
-    <script src="views/PlayerView.js"></script>
-    <script src="views/LibraryView.js"></script>
-    <script src="views/LibraryEntryView.js"></script>
-    <script src="views/SongQueueEntryView.js"></script>
-    <script src="views/SongQueueView.js"></script>
-    <script src="views/AppView.js"></script>
-
     <script>
       $(function() {
-        // set up model objects
-        var library = new Songs(songData);
-        var app = new AppModel({library: library});
-
-        // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
-
-        // put the view onto the screen
+        var pokemonList = new PokemonList(PokemonData);
+        var appModel = new AppModel({list: pokemonList});
+        var appView = new AppView({model: appModel});
         $('body').append(appView.render());
       });
     </script>
